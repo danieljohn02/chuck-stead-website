@@ -7,10 +7,12 @@ const SECTIONS = [
   { id: "philosophy", label: "Living History" },
   { id: "bio", label: "Biography" },
   { id: "projects", label: "Field Projects" },
+  { id: "restoration", label: "Restoration" },
   { id: "angola", label: "Angola" },
   { id: "videos", label: "Videos" },
   { id: "engage", label: "Engagement" },
   { id: "contact", label: "Contact" },
+  { id: "gallery", label: "Gallery" },
 ];
 
 export default function Nav() {

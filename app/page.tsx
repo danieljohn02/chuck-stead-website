@@ -1,6 +1,8 @@
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import VideoGrid from "@/components/VideoGrid";
+import { fetchPlaylistVideos, type Video } from "@/lib/youtube";
 
 type Project = {
   num: string;
@@ -102,13 +104,15 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const VIDEOS = [
-  { lab: "Field Report", ttl: "Monsey Glen" },
-  { lab: "Interview", ttl: "Archaeologist Ed Lenik" },
-  { lab: "Lecture", ttl: "Black Indians: A History" },
-  { lab: "Field Report", ttl: "Spring House Rock Shelter" },
-  { lab: "Community Conversation", ttl: "HBCU Scholars Visit" },
-  { lab: "Coming Soon", ttl: "New segments in production" },
+// Fallback used when YOUTUBE_API_KEY / YOUTUBE_PLAYLIST_ID are not set,
+// or while the playlist is empty. Same shape as live API output.
+const FALLBACK_VIDEOS: Video[] = [
+  { id: "",  label: "Field Report",          title: "Monsey Glen",                      thumbnail: "", publishedAt: "" },
+  { id: "",  label: "Interview",             title: "Archaeologist Ed Lenik",           thumbnail: "", publishedAt: "" },
+  { id: "",  label: "Lecture",               title: "Black Indians: A History",         thumbnail: "", publishedAt: "" },
+  { id: "",  label: "Field Report",          title: "Spring House Rock Shelter",        thumbnail: "", publishedAt: "" },
+  { id: "",  label: "Community Conversation", title: "HBCU Scholars Visit",             thumbnail: "", publishedAt: "" },
+  { id: "",  label: "Coming Soon",           title: "New segments in production",       thumbnail: "", publishedAt: "" },
 ];
 
 const ENGAGEMENTS = [
@@ -120,7 +124,9 @@ const ENGAGEMENTS = [
   { num: "VI",  title: "International Partnerships",   body: "Angola and the broader African continent — educational exchanges rooted in shared indigenous heritage and diaspora memory." },
 ];
 
-export default function Page() {
+export default async function Page() {
+  const live = await fetchPlaylistVideos();
+  const videos = live && live.length > 0 ? live : FALLBACK_VIDEOS;
   return (
     <>
       <Nav />
@@ -131,7 +137,6 @@ export default function Page() {
           <div className="hero-content">
             <div className="hero-grid">
               <div className="hero-main">
-                <p className="eyebrow">African Village on Native American Land</p>
                 <h1>
                   Dr. Chuck Stead<br />
                   <em>Eco Historian</em>
@@ -145,16 +150,18 @@ export default function Page() {
                 </div>
               </div>
               <aside className="hero-aside">
-                <p className="subtitle">
-                  Research, fieldwork, and storytelling at the convergence of African and Native American Indigenous heritage — the intertribal world that author William Loren Katz identified as the <em>“Black Indians.”</em>
-                </p>
+                <figure className="hero-portrait">
+                  <img
+                    src="/images/27-stead-portrait.png"
+                    alt="Dr. Chuck Stead, photographed atop a ridge overlooking the Hudson Valley"
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <figcaption>
+                    Eco History is the study of the interplay between ecological and historical factors. It looks at how the environment changes; how human activities affect historical events and societal development.
+                  </figcaption>
+                </figure>
               </aside>
-            </div>
-            <div className="hero-stats">
-              <div className="hero-stat"><div className="num">25+</div><div className="lab">Years Teaching</div></div>
-              <div className="hero-stat"><div className="num">PhD</div><div className="lab">Environmental Studies</div></div>
-              <div className="hero-stat"><div className="num">2</div><div className="lab">Continents of Research</div></div>
-              <div className="hero-stat"><div className="num">9+</div><div className="lab">Active Field Sites</div></div>
             </div>
           </div>
         </div>
@@ -197,11 +204,15 @@ export default function Page() {
 
               <Reveal as="div" className="journal-strip">
                 <figure>
-                  <img src="/images/07-turtle-journal.png" alt="Journal drawing of Turtle Island, from Dr. Stead's field journals" loading="lazy" decoding="async" />
+                  <div className="img-frame">
+                    <img src="/images/07-turtle-journal.png" alt="Journal drawing of Turtle Island, from Dr. Stead's field journals" loading="lazy" decoding="async" />
+                  </div>
                   <figcaption>“Mozelle Van Dunk Stein spoke of Turtle Island and its place in the bible.” — From Dr. Stead's journals.</figcaption>
                 </figure>
                 <figure>
-                  <img src="/images/08-butterfly-journal.png" alt="Journal drawing of butterfly, from Dr. Stead's field journals" loading="lazy" decoding="async" />
+                  <div className="img-frame">
+                    <img src="/images/08-butterfly-journal.png" alt="Journal drawing of butterfly, from Dr. Stead's field journals" loading="lazy" decoding="async" />
+                  </div>
                   <figcaption>“Cindy spoke of how Butterfly says, ‘You can't help but change.’” — From Dr. Stead's journals.</figcaption>
                 </figure>
               </Reveal>
@@ -237,85 +248,97 @@ export default function Page() {
 
       {/* ===================== LIVING HISTORY ===================== */}
       <section id="philosophy">
-        <div className="wrap-narrow">
+        <div className="wrap">
           <Reveal as="header" className="section-head">
             <p className="eyebrow"><span className="num">§ 02</span> Methodology</p>
             <h2>Living History</h2>
           </Reveal>
 
-          <Reveal>
-            <p className="lead">
-              Cultural preservation through the art of storytelling: eldership and medicine stories honored among native society as a counter to the colonialism of the material world.
-            </p>
+          <div className="living-grid">
+            <Reveal as="div" className="living-photos">
+              <figure>
+                <img
+                  src="/images/28-stead-hat.png"
+                  alt="Dr. Chuck Stead at a community gathering"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Dr. Stead at Nyack Farmer's Market, 2019.</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="/images/29-stead-storytelling.png"
+                  alt="Dr. Stead speaking to a circle of children, telling stories"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>At Nature Place Day Camp, Chestnut Ridge, NY, 2013.</figcaption>
+              </figure>
+            </Reveal>
 
-            <p>
-              An indigenous belief likely universal among the native world is this: <em>a story lives in the telling of the story.</em> The process of telling and listening brings teller and listener together into a living narrative that transcends time. Working with the premise that we are the history of our past — our past viewed always from our present lives, within the present from where it is spoken — we are forever weaving ourselves into the fabric of our traditions, our failures, and our reemergence.
-            </p>
+            <Reveal as="div" className="living-text">
+              <p className="lead">
+                Cultural preservation through the art of storytelling: eldership and medicine stories honored among native society as a counter to the colonialism of the material world.
+              </p>
 
-            <p>
-              When the world of the nation/state sought resources from the nativistic world, the core principle of naturalism — reciprocity — was smashed and replaced with the principle of commodity. The remnants of that collision of colonialism have long been held together with the narrative thread of <em>medicine stories</em>: lasting tales infused with traditional knowledge, often sustained in metaphor, but not the lifeless symbol on a page. Rather, a living metaphor that breathes with every new teller, every new listener.
-            </p>
+              <p>
+                An indigenous belief likely universal among the native world is this: <em>a story lives in the telling of the story.</em> The process of telling and listening brings teller and listener together into a living narrative that transcends time. Working with the premise that we are the history of our past — our past viewed always from our present lives, within the present from where it is spoken — we are forever weaving ourselves into the fabric of our traditions, our failures, and our reemergence.
+              </p>
 
-            <p>
-              And just as Arthur Frank told us in <em>The Wounded Storyteller</em> — that one can only heal by telling one's story through the wounds — medicine stories return the gift of reciprocation to our world. Exchange, acknowledgement, and inclusion are the virtues of medicine stories, and by these virtues one comes to speak truth to power. Such storytelling is living history — ever alive and alert to its own shape-shifting reality, ever conscious of its ancient presence in its untold future, and always building upon the sound of reflection.
-            </p>
+              <p>
+                When the world of the nation/state sought resources from the nativistic world, the core principle of naturalism — reciprocity — was smashed and replaced with the principle of commodity. The remnants of that collision of colonialism have long been held together with the narrative thread of <em>medicine stories</em>: lasting tales infused with traditional knowledge, often sustained in metaphor, but not the lifeless symbol on a page. Rather, a living metaphor that breathes with every new teller, every new listener.
+              </p>
 
-            <blockquote>
-              A story lives in the telling of the story.
-            </blockquote>
-          </Reveal>
+              <p>
+                And just as Arthur Frank told us in <em>The Wounded Storyteller</em> — that one can only heal by telling one's story through the wounds — medicine stories return the gift of reciprocation to our world. Exchange, acknowledgement, and inclusion are the virtues of medicine stories, and by these virtues one comes to speak truth to power. Such storytelling is living history — ever alive and alert to its own shape-shifting reality, ever conscious of its ancient presence in its untold future, and always building upon the sound of reflection.
+              </p>
+
+              <blockquote>
+                A story lives in the telling of the story.
+              </blockquote>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ===================== BIOGRAPHY ===================== */}
       <section id="bio">
         <div className="wrap">
-          <Reveal as="header" className="section-head">
-            <p className="eyebrow"><span className="num">§ 03</span> About</p>
-            <h2>Dr. Chuck (Walter) Stead</h2>
-          </Reveal>
+          <div className="bio-layout">
+            <div className="bio-left">
+              <Reveal as="header" className="section-head">
+                <p className="eyebrow"><span className="num">§ 03</span> About</p>
+                <h2>Dr. Chuck Stead</h2>
+              </Reveal>
+              <Reveal>
+                <p className="lead">
+                  A lifelong storyteller, Dr. Stead's work centers on Traditional Ecological Knowledge (TEK) and its integration with contemporary Western culture through storytelling. His informal education has been an association with countless tribal elders, social activists, veterans, citizen scientists, and storytellers.
+                </p>
+                <p>
+                  He has worked as a planning program assistant and environmental consultant to the Town of Ramapo, New York; with Cornell Cooperative Extension at Stony Point, NY, as an environmental educator/county agent; and was lead investigator on the Ford Remediation project in the Ramapo Watershed, completed in 2018. Dr. Stead holds a PhD in Environmental Studies (Antioch University, Keene, NH); completed Advanced study in Social Ecology (Institute of Social Ecology, Goddard College, Plainfield, VT); and an MA in Social/Public Policy (Empire State College, NY).
+                </p>
+              </Reveal>
+            </div>
 
-          <div className="bio-grid">
-            <Reveal>
-              <p className="lead">
-                A lifelong storyteller, Dr. Stead's work centers on Traditional Ecological Knowledge (TEK) and its integration with contemporary Western culture through storytelling. His informal education has been an association with countless tribal elders, social activists, veterans, citizen scientists, and storytellers.
-              </p>
-              <p>
-                He has worked as a planning program assistant and environmental consultant to the Town of Ramapo, New York, and with Cornell Cooperative Extension at Stony Point, NY, as an environmental educator and county agent.
-              </p>
-
-              <div className="degrees">
-                <p className="eyebrow">Formal Education</p>
-                <ul>
-                  <li>PhD, Environmental Studies — Antioch University, Keene, NH</li>
-                  <li>Advanced Study in Social Ecology — Goddard College, Plainfield, VT</li>
-                  <li>MA, Social / Public Policy — Empire State College, NY</li>
-                  <li>BA — Empire State College, NY</li>
-                  <li>AA — Rockland Community College, NY</li>
-                </ul>
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <p className="eyebrow">Teaching Appointments</p>
-              <ul className="cv-list">
-                <li>
-                  <span className="role">1998 – Pres.</span>
-                  <span className="what"><strong>Ramapo College of New Jersey</strong> — Adjunct Professor. <em>World Sustainability</em>, <em>Social Ecology</em>, and a series of Environmental Studies courses.</span>
-                </li>
-                <li>
-                  <span className="role">Montana</span>
-                  <span className="what"><strong>Montana State University–Billings</strong> — <em>Native Americans in Contemporary Society.</em></span>
-                </li>
-                <li>
-                  <span className="role">NYC</span>
-                  <span className="what"><strong>Marymount Manhattan</strong> — Lecture / lab in <em>Environmental Science</em> and <em>Natural Disasters and the Environment.</em></span>
-                </li>
-                <li>
-                  <span className="role">New York</span>
-                  <span className="what"><strong>Empire State College of NY</strong> — Course development in <em>Social Policy</em>, <em>Community and Society</em>, and <em>Social Ecology.</em></span>
-                </li>
-              </ul>
+            <Reveal as="div" className="bio-photos">
+              <figure>
+                <img
+                  src="/images/30-piermont-pier.png"
+                  alt="Dr. Stead with community partners at a Hudson River health outreach event"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Dept. of Health, Fish Advisory, at Piermont Pier, N.Y., 2011.</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="/images/31-cornell-extension.png"
+                  alt="Dr. Stead conducting a field lesson with students"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Teaching field class for Cornell Cooperative Extension, 2011.</figcaption>
+              </figure>
             </Reveal>
           </div>
         </div>
@@ -365,15 +388,111 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ===================== ECOLOGICAL RESTORATION ===================== */}
+      <section id="restoration">
+        <div className="wrap">
+          <Reveal as="header" className="section-head">
+            <p className="eyebrow"><span className="num">§ 05</span> Ecological Restoration</p>
+            <h2>Twenty-three years in the Ramapo Watershed.</h2>
+          </Reveal>
+
+          <div className="two-col">
+            <Reveal>
+              <p className="lead">
+                For a twenty-three-year period Dr. Stead worked on the restoration of environmental contamination sites on the New York side of the Ramapo Valley. These sites included The Meadows of Hillburn, NY; the Ramapo Wellfield in Hillburn; the Torne Valley of unincorporated Ramapo; and a series of adjacent sites.
+              </p>
+              <p>
+                From discovery, documentation, soil analysis, and waste evaluation, Stead — working with Town Supervisor Christopher St. Lawrence — convinced the NYS DEC to open negotiations with Ford Motor Company, the party responsible for the disposal of the materials. The waste was primarily the lead paint finishes for cars manufactured in the Ford Mahwah Plant from 1955 to 1980.
+              </p>
+              <p>
+                Dr. Stead's work in the watershed ultimately led to the cleanup and restoration of <em>over one hundred thousand tons of toxic waste.</em> His restoration work with the Department of Environmental Conservation, Ford Motor Company, the Town of Ramapo, herpetologists, botanists, and local indigenous survivors of the contamination was completed in 2018.
+              </p>
+
+              <blockquote>
+                Over 100,000 tons of toxic waste — cleaned, restored, and returned to the watershed.
+                <cite>— Completed 2018</cite>
+              </blockquote>
+            </Reveal>
+
+            <Reveal as="aside" className="sidebar-card">
+              <p className="eyebrow">Partners &amp; Counterparties</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0.8rem 0 0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                <li>— NYS Department of Environmental Conservation</li>
+                <li>— Ford Motor Company</li>
+                <li>— Town of Ramapo, NY (Supervisor Christopher St. Lawrence)</li>
+                <li>— Field herpetologists &amp; botanists</li>
+                <li>— Local indigenous survivors of the contamination</li>
+              </ul>
+              <hr className="rule" />
+              <p className="eyebrow">Sites</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0.8rem 0 0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                <li>— The Meadows of Hillburn, NY</li>
+                <li>— Ramapo Wellfield, Hillburn</li>
+                <li>— Torne Valley, unincorporated Ramapo</li>
+                <li>— Adjacent watershed sites</li>
+              </ul>
+            </Reveal>
+          </div>
+
+          <div className="restoration-gallery">
+            <Reveal as="figure">
+              <img src="/images/32-eco-deep-soil.png" alt="Deep soil samples" loading="lazy" decoding="async" />
+              <figcaption>Deep soil samples.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/33-eco-toxic-waste.png" alt="A buried continuous flow of toxic waste" loading="lazy" decoding="async" />
+              <figcaption>A buried continuous flow of toxic waste.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/34-eco-surface-soil.png" alt="Surface soil samples" loading="lazy" decoding="async" />
+              <figcaption>Surface soil samples.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/35-eco-lab-study.png" alt="Laboratory study of soil" loading="lazy" decoding="async" />
+              <figcaption>Laboratory study of soil.</figcaption>
+            </Reveal>
+            <Reveal as="figure" className="restoration-pair">
+              <div className="pair">
+                <img src="/images/36-eco-tree-coring.png" alt="Dr. Stead coring tree rings" loading="lazy" decoding="async" />
+                <img src="/images/37-eco-tree-rings.png" alt="Tree rings recovered by coring" loading="lazy" decoding="async" />
+              </div>
+              <figcaption>Dr. Stead coring tree rings to establish a timeline for the illegal dumping.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/38-eco-ford-dec.png" alt="Dr. Stead talking with Ford and DEC representatives" loading="lazy" decoding="async" />
+              <figcaption>Dr. Stead talking with Ford and DEC.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/39-eco-flora-journal.png" alt="Field journal: plant studies of local flora" loading="lazy" decoding="async" />
+              <figcaption>Plant studies of local flora.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/40-eco-excavation.png" alt="Excavation work at contaminated site" loading="lazy" decoding="async" />
+              <figcaption>Excavation work at contaminated site.</figcaption>
+            </Reveal>
+            <Reveal as="figure">
+              <img src="/images/41-eco-predators.png" alt="Tracking key predators at the restoration site" loading="lazy" decoding="async" />
+              <figcaption>Tracking key predators at site.</figcaption>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ===================== ANGOLA ===================== */}
       <section id="angola" className="angola">
         <div className="wrap">
-          <Reveal as="header" className="section-head">
-            <p className="eyebrow"><span className="num">§ 05</span> International Curriculum</p>
-            <h2>Angola &amp; <em>the Atlantic Memory.</em></h2>
-            <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
-              The story of Black Indians is a story of two continents. Half of it lives in the soils of the Hudson Valley and the Ramapo Mountains. The other half lives in the soils of West Central Africa — and nowhere more clearly than in Angola.
-            </p>
+          <Reveal as="header" className="section-head angola-head">
+            <div className="angola-head-text">
+              <p className="eyebrow"><span className="num">§ 06</span> International Curriculum</p>
+              <h2>Angola &amp; <em>the Atlantic Memory.</em></h2>
+              <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
+                The story of Black Indians is a story of two continents. Half of it lives in the soils of the Hudson Valley and the Ramapo Mountains. The other half lives in the soils of West Central Africa — and nowhere more clearly than in Angola.
+              </p>
+            </div>
+            <figure className="angola-head-photo">
+              <img src="/images/47-angola-section.png" alt="Field journal: Jennings Petroglyph (New Jersey) and Angolan figurines, late 19th century" loading="lazy" decoding="async" />
+              <figcaption>Prehistoric Petroglyph, New Jersey, and Angolan figurines, late 19th century. — <em>Stead's Angola Journal, 2026.</em></figcaption>
+            </figure>
           </Reveal>
 
           <Reveal>
@@ -415,25 +534,15 @@ export default function Page() {
       <section id="videos">
         <div className="wrap">
           <Reveal as="header" className="section-head">
-            <p className="eyebrow"><span className="num">§ 06</span> Video Archive</p>
+            <p className="eyebrow"><span className="num">§ 07</span> Video Archive</p>
             <h2>Articles, Interviews, &amp; Field Footage.</h2>
             <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
               A growing collection of research materials and interviews with historians, community members, educators, and students.
             </p>
           </Reveal>
 
-          <Reveal as="div" className="video-grid">
-            {VIDEOS.map((v, i) => (
-              <a key={i} className="video-card" href="#contact" aria-label={`${v.lab} — ${v.ttl}`}>
-                <span className="play" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-                <div className="meta">
-                  <div className="lab">{v.lab}</div>
-                  <div className="ttl">{v.ttl}</div>
-                </div>
-              </a>
-            ))}
+          <Reveal>
+            <VideoGrid videos={videos} />
           </Reveal>
 
           <div className="video-foot">
@@ -444,6 +553,7 @@ export default function Page() {
               <a href="#" aria-label="Instagram">Instagram</a>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -451,7 +561,7 @@ export default function Page() {
       <section id="engage">
         <div className="wrap">
           <Reveal as="header" className="section-head">
-            <p className="eyebrow"><span className="num">§ 07</span> Field Trips &amp; Academic Engagement</p>
+            <p className="eyebrow"><span className="num">§ 08</span> Field Trips &amp; Academic Engagement</p>
             <h2>Six ways to work together.</h2>
             <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
               Reach out to discuss any of the following — Dr. Stead works directly with schools, scholars, civic organizations, tribal councils, and cultural institutions across the United States and abroad.
@@ -473,7 +583,7 @@ export default function Page() {
       <section id="contact">
         <div className="wrap">
           <Reveal as="header" className="section-head">
-            <p className="eyebrow"><span className="num">§ 08</span> Get in Touch</p>
+            <p className="eyebrow"><span className="num">§ 09</span> Get in Touch</p>
             <h2>Lectures, workshops, field trips.</h2>
           </Reveal>
 
@@ -506,6 +616,27 @@ export default function Page() {
               <ContactForm />
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ===================== GALLERY ===================== */}
+      <section id="gallery">
+        <div className="wrap">
+          <Reveal as="header" className="section-head">
+            <p className="eyebrow"><span className="num">§ 10</span> Gallery</p>
+            <h2>Photographs from the field.</h2>
+            <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
+              A selection of images from research sites, community gatherings, and field expeditions. More to come.
+            </p>
+          </Reveal>
+
+          <Reveal as="div" className="gallery-grid">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <figure key={i} className="gallery-slot">
+                <div className="gallery-ph">Image {i + 1}</div>
+              </figure>
+            ))}
+          </Reveal>
         </div>
       </section>
 
