@@ -552,9 +552,9 @@ export default async function Page() {
           <div className="video-foot">
             <p className="note">New videos are added regularly. More content coming.</p>
             <div className="social-row">
-              <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
-              <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
-              <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+              <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
 

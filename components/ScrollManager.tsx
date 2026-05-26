@@ -16,7 +16,7 @@ export default function ScrollManager() {
     const isReloadOrRestore =
       nav?.type === "reload" || nav?.type === "back_forward";
 
-    if (!isReloadOrRestore && !window.location.hash) {
+    if (!isReloadOrRestore && !window.location.hash && window.scrollY !== 0) {
       window.scrollTo(0, 0);
     }
   }, []);

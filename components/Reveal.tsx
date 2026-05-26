@@ -1,12 +1,19 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
-export default function Reveal({ children, as: Tag = "div", className = "" }: { children: React.ReactNode; as?: any; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+type RevealProps = {
+  children: ReactNode;
+  as?: ElementType;
+  className?: string;
+};
+
+export default function Reveal({ children, as: Tag = "div", className = "" }: RevealProps) {
+  const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
+
   useEffect(() => {
-    if (!ref.current) return;
     const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -21,10 +28,10 @@ export default function Reveal({ children, as: Tag = "div", className = "" }: { 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  const Comp: any = Tag;
-  return (
-    <Comp ref={ref} className={`reveal${shown ? " in" : ""} ${className}`.trim()}>
-      {children}
-    </Comp>
+
+  return createElement(
+    Tag,
+    { ref, className: `reveal${shown ? " in" : ""} ${className}`.trim() },
+    children
   );
 }

@@ -58,7 +58,6 @@ export default function ContactForm() {
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       onSubmit={onSubmit}
-      noValidate
     >
       {/* Required hidden field so Netlify identifies the form on submit */}
       <input type="hidden" name="form-name" value={FORM_NAME} />
