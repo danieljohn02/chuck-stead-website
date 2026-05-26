@@ -69,7 +69,7 @@ export default function VideoGrid({ videos }: { videos: Video[] }) {
             </button>
             <div className="video-modal-frame">
               <iframe
-                src={`https://www.youtube.com/embed/${active.id}?autoplay=1&rel=0&modestbranding=1`}
+                src={`https://www.youtube.com/embed/${/^[a-zA-Z0-9_-]{11}$/.test(active.id) ? active.id : ""}?autoplay=1&rel=0&modestbranding=1`}
                 title={active.title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

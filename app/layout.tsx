@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import ScrollManager from "@/components/ScrollManager";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -42,7 +43,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ScrollManager />
+        {children}
+      </body>
     </html>
   );
 }
