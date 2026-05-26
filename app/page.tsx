@@ -637,20 +637,6 @@ export default async function Page() {
               <ContactForm />
             </Reveal>
           </div>
-
-          {/* Hidden static form for Netlify build-time form detection.
-              The real form is rendered by ContactForm (client component).
-              Netlify scans this at deploy time and registers the field names. */}
-          <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-            <input type="text" name="firstName" />
-            <input type="text" name="lastName" />
-            <input type="email" name="email" />
-            <input type="text" name="institution" />
-            <input type="text" name="inquiry" />
-            <input type="text" name="country" />
-            <textarea name="message"></textarea>
-            <input type="text" name="bot-field" />
-          </form>
         </div>
       </section>
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forms</title>
+  </head>
+  <body>
+    <!-- Static forms file required by Netlify Next.js runtime v5 for build-time form detection.
+         The real form lives in components/ContactForm.tsx and submits to "/" with form-name="contact". -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="text" name="institution" />
+      <input type="text" name="inquiry" />
+      <input type="text" name="country" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>
