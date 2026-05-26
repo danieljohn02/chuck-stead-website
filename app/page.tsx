@@ -97,22 +97,26 @@ const PROJECTS: Project[] = [
     loc: "Sloatsburg, NY",
     desc: "Archaeologist Ed Lenik's excavation. A total of 213 projectile points were recovered and analyzed, providing useful temporal indicators of Native American cultural periods. Stratigraphic excavation methodology — small trowels, dust pans, hardware-cloth screens — is fully documented.",
     images: [
-      { src: "/images/23-springhouse-shelter.png", cap: "Shelter site in Sloatsburg NY — Photo, Lenik, 1988" },
       { src: "/images/24-excavation-measuring.png", cap: "Measuring the excavation units at Spring House Rock Shelter" },
       { src: "/images/26-projectile-points.png", cap: "Projectile points: temporal indicators of Native American cultural periods" },
     ],
   },
 ];
 
-// Fallback used when YOUTUBE_API_KEY / YOUTUBE_PLAYLIST_ID are not set,
-// or while the playlist is empty. Same shape as live API output.
+// Used when YOUTUBE_API_KEY / YOUTUBE_PLAYLIST_ID env vars are not set,
+// or until the videos are uploaded to YouTube. Replace `id` values with the
+// 11-char YouTube video IDs (the bit after `v=` in a YouTube URL).
 const FALLBACK_VIDEOS: Video[] = [
-  { id: "",  label: "Field Report",          title: "Monsey Glen",                      thumbnail: "", publishedAt: "" },
-  { id: "",  label: "Interview",             title: "Archaeologist Ed Lenik",           thumbnail: "", publishedAt: "" },
-  { id: "",  label: "Lecture",               title: "Black Indians: A History",         thumbnail: "", publishedAt: "" },
-  { id: "",  label: "Field Report",          title: "Spring House Rock Shelter",        thumbnail: "", publishedAt: "" },
-  { id: "",  label: "Community Conversation", title: "HBCU Scholars Visit",             thumbnail: "", publishedAt: "" },
-  { id: "",  label: "Coming Soon",           title: "New segments in production",       thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Monsey Glen — Intro",            thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Black Bridge",                    thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Brook Street School",             thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Cellar Kitchen — Harmony Hall",  thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Indian Rock",                     thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Augusta Forge",                   thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Southfield Furnace",              thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Piermont / Ramapo Rail Trail",    thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Ramapo Pass",                     thumbnail: "", publishedAt: "" },
+  { id: "", label: "Field Report", title: "Slave Ship",                      thumbnail: "", publishedAt: "" },
 ];
 
 const ENGAGEMENTS = [
@@ -409,7 +413,7 @@ export default async function Page() {
               </p>
 
               <blockquote>
-                Over 100,000 tons of toxic waste — cleaned, restored, and returned to the watershed.
+                Over 100,000 tons of toxic waste removed from the watershed.
                 <cite>— Completed 2018</cite>
               </blockquote>
             </Reveal>
@@ -436,42 +440,42 @@ export default async function Page() {
 
           <div className="restoration-gallery">
             <Reveal as="figure">
-              <img src="/images/32-eco-deep-soil.png" alt="Deep soil samples" loading="lazy" decoding="async" />
+              <img src="/images/32-eco-deep-soil.jpg" alt="Deep soil samples" loading="lazy" decoding="async" />
               <figcaption>Deep soil samples.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/33-eco-toxic-waste.png" alt="A buried continuous flow of toxic waste" loading="lazy" decoding="async" />
+              <img src="/images/33-eco-toxic-waste.jpg" alt="A buried continuous flow of toxic waste" loading="lazy" decoding="async" />
               <figcaption>A buried continuous flow of toxic waste.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/34-eco-surface-soil.png" alt="Surface soil samples" loading="lazy" decoding="async" />
+              <img src="/images/34-eco-surface-soil.jpg" alt="Surface soil samples" loading="lazy" decoding="async" />
               <figcaption>Surface soil samples.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/35-eco-lab-study.png" alt="Laboratory study of soil" loading="lazy" decoding="async" />
+              <img src="/images/35-eco-lab-study.jpg" alt="Laboratory study of soil" loading="lazy" decoding="async" />
               <figcaption>Laboratory study of soil.</figcaption>
             </Reveal>
             <Reveal as="figure" className="restoration-pair">
               <div className="pair">
-                <img src="/images/36-eco-tree-coring.png" alt="Dr. Stead coring tree rings" loading="lazy" decoding="async" />
-                <img src="/images/37-eco-tree-rings.png" alt="Tree rings recovered by coring" loading="lazy" decoding="async" />
+                <img src="/images/36-eco-tree-coring.jpg" alt="Dr. Stead coring tree rings" loading="lazy" decoding="async" />
+                <img src="/images/37-eco-tree-rings.jpg" alt="Tree rings recovered by coring" loading="lazy" decoding="async" />
               </div>
               <figcaption>Dr. Stead coring tree rings to establish a timeline for the illegal dumping.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/38-eco-ford-dec.png" alt="Dr. Stead talking with Ford and DEC representatives" loading="lazy" decoding="async" />
+              <img src="/images/38-eco-ford-dec.jpg" alt="Dr. Stead talking with Ford and DEC representatives" loading="lazy" decoding="async" />
               <figcaption>Dr. Stead talking with Ford and DEC.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/39-eco-flora-journal.png" alt="Field journal: plant studies of local flora" loading="lazy" decoding="async" />
+              <img src="/images/39-eco-flora-journal.jpg" alt="Field journal: plant studies of local flora" loading="lazy" decoding="async" />
               <figcaption>Plant studies of local flora.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/40-eco-excavation.png" alt="Excavation work at contaminated site" loading="lazy" decoding="async" />
+              <img src="/images/40-eco-excavation.jpg" alt="Excavation work at contaminated site" loading="lazy" decoding="async" />
               <figcaption>Excavation work at contaminated site.</figcaption>
             </Reveal>
             <Reveal as="figure">
-              <img src="/images/41-eco-predators.png" alt="Tracking key predators at the restoration site" loading="lazy" decoding="async" />
+              <img src="/images/41-eco-predators.jpg" alt="Tracking key predators at the restoration site" loading="lazy" decoding="async" />
               <figcaption>Tracking key predators at site.</figcaption>
             </Reveal>
           </div>
@@ -514,7 +518,7 @@ export default async function Page() {
               </div>
               <div className="pillar">
                 <h3>Field Exchanges</h3>
-                <p>Reciprocal field study at active research sites in NY/NJ and at significant sites in Angola — coordinated with local tribal councils, scholars, and cultural ministries.</p>
+                <p>Reciprocal field study at active research sites in NY/NJ and at significant sites in Angola — coordinated with tribal councils, scholars, and cultural ministries.</p>
               </div>
               <div className="pillar">
                 <h3>Living History Methodology</h3>
@@ -548,9 +552,9 @@ export default async function Page() {
           <div className="video-foot">
             <p className="note">New videos are added regularly. More content coming.</p>
             <div className="social-row">
-              <a href="#" aria-label="YouTube">YouTube</a>
-              <a href="#" aria-label="Facebook">Facebook</a>
-              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+              <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+              <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
             </div>
           </div>
 
@@ -598,6 +602,23 @@ export default async function Page() {
                   <dd><a href="mailto:chuckstead@gmail.com">chuckstead@gmail.com</a></dd>
                 </div>
                 <div>
+                  <dt>Follow</dt>
+                  <dd className="contact-socials">
+                    <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.52l.38-2.93h-2.9V8.7c0-.85.24-1.43 1.46-1.43h1.56V4.66c-.27-.04-1.2-.12-2.28-.12-2.25 0-3.79 1.37-3.79 3.9v2.17H8v2.93h2.45V21h3.05z"/></svg>
+                      <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+                      <span>Instagram</span>
+                    </a>
+                    <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3-5.2 3z"/></svg>
+                      <span>YouTube</span>
+                    </a>
+                  </dd>
+                </div>
+                <div>
                   <dt>Affiliation</dt>
                   <dd>Ramapo College of New Jersey</dd>
                 </div>
@@ -616,6 +637,20 @@ export default async function Page() {
               <ContactForm />
             </Reveal>
           </div>
+
+          {/* Hidden static form for Netlify build-time form detection.
+              The real form is rendered by ContactForm (client component).
+              Netlify scans this at deploy time and registers the field names. */}
+          <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+            <input type="text" name="firstName" />
+            <input type="text" name="lastName" />
+            <input type="email" name="email" />
+            <input type="text" name="institution" />
+            <input type="text" name="inquiry" />
+            <input type="text" name="country" />
+            <textarea name="message"></textarea>
+            <input type="text" name="bot-field" />
+          </form>
         </div>
       </section>
 
@@ -626,17 +661,46 @@ export default async function Page() {
             <p className="eyebrow"><span className="num">§ 10</span> Gallery</p>
             <h2>Photographs from the field.</h2>
             <p className="lead" style={{ maxWidth: "55ch", marginTop: "1.2rem" }}>
-              A selection of images from research sites, community gatherings, and field expeditions. More to come.
+              A selection of images from research sites, community gatherings, and field expeditions.
             </p>
           </Reveal>
 
-          <Reveal as="div" className="gallery-grid">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <figure key={i} className="gallery-slot">
-                <div className="gallery-ph">Image {i + 1}</div>
+          <div className="gallery-masonry">
+            {[
+              { n: 1,  cap: "Dr. Stead with Leo, atop Mt. Peter, Orange County, NY, 2025." },
+              { n: 2,  cap: "Dr. Stead at a Ramapo College Forum speaking out about the exploitation of the local Munsee tribe, 2013." },
+              { n: 3,  cap: "Storytelling Festival, Haverstraw, NY, 2015." },
+              { n: 4,  cap: "Dr. Stead at the Medicine Garden, Torne Valley, NY, 2014." },
+              { n: 5,  cap: "Planting with wife Kat at Medicine Garden, 2014." },
+              { n: 6,  cap: "Doctoral Defense, Ramapo Town Hall, 2015." },
+              { n: 7,  cap: "Fleshing hides at Saltbox, 2016." },
+              { n: 8,  cap: "Working with ethnobotanist Daniel Shebitz at Medicine Garden, 2016." },
+              { n: 9,  cap: "Dr. Stead with Ramapo students, in the Torne Valley, Fall 2017." },
+              { n: 10, cap: "Chunk of lead paint at Torne Valley site, 2017." },
+              { n: 11, cap: "Dr. Stead hosting Mahwah Environmental Volunteer Organization (MEVO) in the Torne Valley, 2018." },
+              { n: 12, cap: "Dr. Stead with Rutgers students, Ringwood, NJ — charting their field study, 2018." },
+              { n: 13, cap: "Dr. Stead with Federal EPA and NJDEP officials at Ringwood Mine Superfund site, October 2018." },
+              { n: 14, cap: "Rattlesnake napping on barn timbers near Saltbox, 2018." },
+              { n: 16, cap: "Dr. Stead introduced his colleague forager Paul Tappenden to Alicia Cook — Medicine Woman of the Akwesasne Mohawk Reservation — to further his study of Traditional Knowledge. January 2020." },
+              { n: 17, cap: "Stead's Angola Journal, 2024." },
+              { n: 18, cap: "Prehistoric Walls map, 1845, sketched into Angola Journal, 2024." },
+              { n: 19, cap: "Speaking to Angolan guests at Harmony Hall, April 2025." },
+              { n: 20, cap: "Speaking at Mandela Hall in the UN, NYC, April 2026." },
+              { n: 21, cap: "Dr. Stead with H.E. Tete Antonio, Minister of External Relations of the Republic of Angola, at Harmony Hall, April 18, 2025." },
+              { n: 22, cap: "H.E. Tete Antonio, Minister of External Relations of the Republic of Angola, with Sloatsburg Mayor Darrell Fraiser, Harmony Hall, April 18, 2025." },
+              { n: 23, cap: "Joyce De Groat and Dolly De Groat with Dr. Stead at Harmony Hall, April 18, 2025." },
+            ].map(({ n, cap }) => (
+              <figure key={n} className="gallery-item">
+                <img
+                  src={`/images/gallery-${String(n).padStart(2, "0")}.jpg`}
+                  alt={cap}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>{cap}</figcaption>
               </figure>
             ))}
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -646,6 +710,20 @@ export default async function Page() {
           <div className="brand">Dr. Chuck Stead — Eco Historian</div>
           <div>
             <a href="mailto:chuckstead@gmail.com">chuckstead@gmail.com</a>
+          </div>
+          <div className="foot-socials">
+            <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.52l.38-2.93h-2.9V8.7c0-.85.24-1.43 1.46-1.43h1.56V4.66c-.27-.04-1.2-.12-2.28-.12-2.25 0-3.79 1.37-3.79 3.9v2.17H8v2.93h2.45V21h3.05z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3-5.2 3z"/></svg>
+              <span>YouTube</span>
+            </a>
           </div>
           <div>© {new Date().getFullYear()} · All research and photography rights reserved.</div>
         </div>

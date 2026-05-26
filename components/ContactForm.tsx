@@ -1,7 +1,13 @@
 "use client";
 import { useState } from "react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkgbweev"; // replace with real Formspree ID
+const FORM_NAME = "contact";
+
+function encode(data: Record<string, string>) {
+  return Object.keys(data)
+    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
+    .join("&");
+}
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -13,12 +19,15 @@ export default function ContactForm() {
     setBusy(true);
     setError(null);
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
+    const payload: Record<string, string> = { "form-name": FORM_NAME };
+    formData.forEach((v, k) => { payload[k] = v.toString(); });
+
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch("/", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode(payload),
       });
       if (res.ok) {
         setSent(true);
@@ -42,7 +51,22 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit} noValidate>
+    <form
+      className="form"
+      name={FORM_NAME}
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
+      noValidate
+    >
+      {/* Required hidden field so Netlify identifies the form on submit */}
+      <input type="hidden" name="form-name" value={FORM_NAME} />
+      {/* Honeypot — real users won't fill this, bots will */}
+      <p hidden>
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+
       <div className="row">
         <div className="field">
           <label htmlFor="firstName">First name</label>
