@@ -678,7 +678,6 @@ export default async function Page() {
               { n: 20, cap: "Speaking at Mandela Hall in the UN, NYC, April 2026." },
               { n: 21, cap: "Dr. Stead with H.E. Tete Antonio, Minister of External Relations of the Republic of Angola, at Harmony Hall, April 18, 2025." },
               { n: 22, cap: "H.E. Tete Antonio, Minister of External Relations of the Republic of Angola, with Sloatsburg Mayor Darrell Fraiser, Harmony Hall, April 18, 2025." },
-              { n: 23, cap: "Joyce De Groat and Dolly De Groat with Dr. Stead at Harmony Hall, April 18, 2025." },
             ].map(({ n, cap }) => (
               <figure key={n} className="gallery-item">
                 <img
