@@ -501,7 +501,27 @@ section + section { border-top: 1px solid var(--rule); }
 /* ---------- Project grid ---------- */
 .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 @media (max-width: 980px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px)  { .proj-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px)  {
+  .proj-grid {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-left: calc(var(--gutter) * -1);
+    margin-right: calc(var(--gutter) * -1);
+    padding: 0.25rem var(--gutter) 1rem;
+    scrollbar-width: thin;
+  }
+  .proj-grid > .proj {
+    flex: 0 0 82vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+  }
+}
 
 .proj {
   background: var(--cream);
@@ -582,7 +602,27 @@ section + section { border-top: 1px solid var(--rule); }
 /* ---------- Videos ---------- */
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
 @media (max-width: 880px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px) { .video-grid { grid-template-columns: 1fr; } }
+@media (max-width: 540px) {
+  .video-grid {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-left: calc(var(--gutter) * -1);
+    margin-right: calc(var(--gutter) * -1);
+    padding: 0.25rem var(--gutter) 1rem;
+    scrollbar-width: thin;
+  }
+  .video-grid > .video-card {
+    flex: 0 0 82vw;
+    max-width: 360px;
+    scroll-snap-align: start;
+  }
+}
 
 .video-card { background: var(--ink); color: var(--on-dark); aspect-ratio: 16 / 9; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 1rem 1.1rem; border: 1px solid rgba(26,22,15,0.2); cursor: pointer; font: inherit; text-align: left; width: 100%; }
 .video-thumb {
