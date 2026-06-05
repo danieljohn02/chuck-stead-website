@@ -28,6 +28,7 @@ export default function VideoGrid({ videos }: { videos: Video[] }) {
 
   return (
     <>
+      <p className="scroll-hint" aria-hidden="true">Swipe to see more <span>→</span></p>
       <div className="video-grid">
         {videos.map((v) => (
           <button

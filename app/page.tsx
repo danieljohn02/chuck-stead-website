@@ -359,6 +359,7 @@ export default async function Page() {
             </p>
           </Reveal>
 
+          <p className="scroll-hint" aria-hidden="true">Swipe to see more <span>→</span></p>
           <div className="proj-grid">
             {PROJECTS.map((p) => (
               <Reveal key={p.num} as="article" className="proj">
