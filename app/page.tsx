@@ -550,7 +550,10 @@ export default async function Page() {
           </Reveal>
 
           <div className="video-foot">
-            <p className="note">New videos are added regularly. More content coming.</p>
+            <div className="video-foot-notes">
+              <p className="note">New videos are added regularly. More content coming.</p>
+              <p className="note">Videography by Holden Texel and Gigi Perez.</p>
+            </div>
             <div className="social-row">
               <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer">YouTube</a>
               <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer">Facebook</a>
