@@ -556,7 +556,7 @@ export default async function Page() {
               <p className="note">Videography by Holden Texel and Gigi Perez.</p>
             </div>
             <div className="social-row">
-              <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="https://www.youtube.com/@Dr.ChuckStead-EcoHistorian" target="_blank" rel="noopener noreferrer">YouTube</a>
               <a href="https://www.facebook.com/chuck.stead.5" target="_blank" rel="noopener noreferrer">Facebook</a>
               <a href="https://www.instagram.com/steadchuck/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
@@ -616,7 +616,7 @@ export default async function Page() {
                       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
                       <span>Instagram</span>
                     </a>
-                    <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@Dr.ChuckStead-EcoHistorian" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3-5.2 3z"/></svg>
                       <span>YouTube</span>
                     </a>
@@ -709,7 +709,7 @@ export default async function Page() {
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
               <span>Instagram</span>
             </a>
-            <a href="https://www.youtube.com/@drcstead" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <a href="https://www.youtube.com/@Dr.ChuckStead-EcoHistorian" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3-5.2 3z"/></svg>
               <span>YouTube</span>
             </a>
